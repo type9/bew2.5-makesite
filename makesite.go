@@ -1,28 +1,27 @@
 package main
 
-<<<<<<< HEAD
 import (
+	"html/template"
 	"io/ioutil"
+	"fmt"
+	"os"
 )
 
-func main() {
-
+type Post struct {
+	Content string
 }
 
-func readFile() string {
-	fileContents, err := ioutil.ReadFile("first-post.txt")
+func main() {
+	//Files are a slice of strings
+	dat, err := ioutil.ReadFile("first-post.txt")
 	if err != nil {
 		panic(err)
 	}
+	postNew := Post{string(dat)}
 
-	return string(fileContents)
+	t := template.Must(template.New("html-tmpl").Parse("template.tmpl"))
+		err = t.Execute(os.Stdout, postNew)
+		if err != nil {
+			panic(err)
+		}
 }
-
-func renderTemplate()
-=======
-import "fmt"
-
-func main() {
-	fmt.Println("Hello, world!")
-}
->>>>>>> 9514ac8a2c135a448a2b15a4b246dcd5d59ee7bf
