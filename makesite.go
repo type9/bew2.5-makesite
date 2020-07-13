@@ -7,6 +7,7 @@ import (
 	"flag"
 	"strings"
 	"os"
+	. "github.com/gobeam/Stringy"
 )
 
 type Post struct {
@@ -34,7 +35,7 @@ func main() {
 		if err != nil {
 			panic(err)
 		}
-		postNew := Post{string(dat)}
+		postNew := Post{New(string(dat)).ToUpper()}
 
 		newFileName := strings.TrimSuffix(match, filepath.Ext(match)) + ".html"
 		outfile, err := os.Create(newFileName)
